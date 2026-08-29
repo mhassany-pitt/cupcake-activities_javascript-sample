@@ -1,0 +1,60 @@
+$schema: https://learning-contents.org/schemas/worked-example/0.1.0
+source: main.js
+license: MIT
+locale: en-US
+id: we_bank_account
+title: Bank Account Management
+description: Learn how to use ES6 classes and methods to manage a bank account in JavaScript.
+authors:
+  - first: Jone
+    last: Doe
+    email: jone.doe@example.com
+    affiliation: University of John Doe
+pedagogy:
+  activity: worked-example
+  difficulty: novice
+  prereq_topics: []
+  topics:
+    - classes
+    - state
+runtime:
+  language: javascript
+statement: |
+  This worked example demonstrates how `BankAccount` state is managed in JavaScript using ES6 classes and methods. We'll examine:
+  1. Class constructor (`constructor`)
+  2. Deposit method (`deposit`)
+  3. Withdrawal method (`withdraw`)
+executions:
+  - title: Bob's Account
+    stdin: []
+    stdout: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    console: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    status: pass
+elements:
+  - type: explanation
+    location:
+      snippet: "constructor(owner, balance) {"
+    explanations:
+      - body: |
+          The `constructor` method initializes the object's properties in JavaScript:
+          ```javascript
+          constructor(owner, balance) {
+              this.owner = owner;
+              this.balance = balance;
+          }
+          ```
+          Properties are attached to `this` when a new instance is created via `new BankAccount(...)`.
+      - body: |
+          ...
+  - type: explanation
+    location:
+      snippet: "if (0 < amount && amount <= this.balance) {"
+    explanations:
+      - body: |
+          This condition validates that the withdrawal transaction is correct: it checks if the `amount` is greater than `0` and is less than or equal to the current `this.balance`.

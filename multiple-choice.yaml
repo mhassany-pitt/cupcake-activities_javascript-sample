@@ -1,0 +1,79 @@
+$schema: https://learning-contents.org/schemas/multiple-choice-question/0.1.0
+license: MIT
+locale: en-US
+id: mcq_bank_account_deposit
+title: JavaScript Class Deposit Method
+description: Choose the correct implementation of the deposit method in JavaScript.
+authors:
+  - first: Jone
+    last: Doe
+    email: jone.doe@example.com
+    affiliation: University of John Doe
+pedagogy:
+  activity: multiple-choice-question
+  difficulty: intermediate
+  prereq_topics:
+    - classes
+  topics:
+    - classes
+    - methods
+include_choices: 3
+question: |
+  Given the following ES6 class definition for `BankAccount`:
+  
+  ```javascript
+  class BankAccount {
+      constructor(owner, balance) {
+          this.owner = owner;
+          this.balance = balance;
+      }
+  }
+  ```
+  
+  Which of the following represents the correct implementation for a `deposit` method in JavaScript that adds a positive `amount` to the account balance and returns the new balance?
+choices:
+  - body: |
+      ```javascript
+      deposit(amount) {
+          if (amount > 0) {
+              this.balance += amount;
+              return this.balance;
+          }
+          throw new Error("Deposit amount must be positive");
+      }
+      ```
+    role: solution
+    include: always
+    order: 1
+    explanations:
+      - body: |
+          This is the correct implementation. It verifies that the deposit `amount` is positive (`amount > 0`), updates the instance property `this.balance` using `+=`, and returns the updated balance. It also throws an `Error` for invalid deposit amounts.
+  - body: |
+      ```javascript
+      deposit(amount) {
+          if (amount > 0) {
+              let balance = balance + amount;
+              return balance;
+          }
+          return balance;
+      }
+      ```
+    role: distractor
+    explanations:
+      - body: |
+          Incorrect. Declaring `let balance = ...` inside the method creates a shadowed local variable instead of updating the instance property `this.balance`.
+  - body: |
+      ```javascript
+      deposit(amount) {
+          this.balance =+ amount;
+          return this.balance;
+      }
+      ```
+    role: distractor
+    explanations:
+      - body: |
+          Incorrect. The operator `=+` assigns positive `amount` (`this.balance = +amount`), which overwrites the balance rather than adding to it. The correct operator is `+=`.
+  - body: None
+    role: distractor
+    include: always
+    order: 2
