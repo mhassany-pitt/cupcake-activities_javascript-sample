@@ -78,12 +78,9 @@ elements:
             console.log(`Balance: ${account.balance}`);
     placeholder: |-
       // 1. Create a BankAccount for "Bob" with 200 initial balance
-
-          // 2. Deposit 100
-
-          // 3. Withdraw 50
-
-          // 4. Print `Balance: ${account.balance}`
+      // 2. Deposit 100
+      // 3. Withdraw 50
+      // 4. Print `Balance: ${account.balance}`
 testcases:
   - title: Standard Account Workflow
     visible: true
