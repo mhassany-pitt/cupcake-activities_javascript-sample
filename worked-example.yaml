@@ -1,27 +1,29 @@
-$schema: https://learning-contents.org/schemas/worked-example/0.1.0
+---
+"$schema": https://learning-contents.org/schemas/worked-example/0.1.0
 source: main.js
 license: MIT
 locale: en-US
 id: we_bank_account
 title: Bank Account Management in JavaScript (ES6)
-description: Learn how to use ES6 classes, constructor binding, and methods to manage object state in JavaScript.
+description: Learn how to use ES6 classes, constructor binding, and methods to manage
+  object state in JavaScript.
 authors:
-  - first: Jone
-    last: Doe
-    email: jone.doe@example.com
-    affiliation: University of John Doe
+- first: Jone
+  last: Doe
+  email: jone.doe@example.com
+  affiliation: University of John Doe
 pedagogy:
   activity: worked-example
   difficulty: novice
   prereq_topics:
-    - basic-syntax
-    - variables
+  - basic-syntax
+  - variables
   topics:
-    - classes
-    - constructors
-    - methods
-    - state
-    - conditional-logic
+  - classes
+  - constructors
+  - methods
+  - state
+  - conditional-logic
 runtime:
   language: javascript
 statement: |
@@ -31,83 +33,85 @@ statement: |
   3. The `withdraw` method with compound guard logic protecting against overdrafts.
   4. The `main` execution function demonstrating object instantiation, method calls, and state inspection.
 executions:
-  - title: Bob's Account
-    stdin: []
-    stdout: |-
-      Deposited 100
-      Withdrew 50
-      Balance: 250
-    console: |-
-      Deposited 100
-      Withdrew 50
-      Balance: 250
-    status: pass
+- title: Bob's Account
+  stdin: []
+  stdout: |-
+    Deposited 100
+    Withdrew 50
+    Balance: 250
+  console: |-
+    Deposited 100
+    Withdrew 50
+    Balance: 250
+  status: pass
 elements:
-  - type: explanation
-    location:
-      snippet: |-
-        class BankAccount {
-            constructor(owner, balance) {
-                this.owner = owner;
-                this.balance = balance;
-            }
-    explanations:
-      - body: |
-          ### 1. Class Declaration and Constructor Initialization
-          * `class BankAccount`: In ES6+, the `class` keyword provides a clear, declarative syntax for creating object blueprints.
-          * `constructor(owner, balance)`: The special constructor method is automatically executed when a new instance is created via `new BankAccount(...)`.
-          * Inside the constructor, `this.owner = owner;` and `this.balance = balance;` attach the argument values to properties on the newly created object instance via the `this` keyword.
-  - type: explanation
-    location:
-      snippet: |-
-            deposit(amount) {
-                if (amount > 0) {
-                    this.balance = this.balance + amount;
-                    console.log(`Deposited ${amount}`);
-                }
-                return this.balance;
-            }
-    explanations:
-      - body: |
-          ### 2. The `deposit` Method
-          * **Input Validation**: `if (amount > 0)` acts as a guard condition ensuring only positive values can be deposited, preventing negative or zero amounts from altering the balance.
-          * **State Mutation**: `this.balance = this.balance + amount;` credits the account by adding `amount` to the current instance balance.
-          * **Template Literal Logging**: `console.log(\`Deposited \${amount}\`);` uses ES6 backtick template literals for string interpolation.
-          * **Return Value**: `return this.balance;` returns the updated balance to the caller.
-  - type: explanation
-    location:
-      snippet: |-
-            withdraw(amount) {
-                if (0 < amount && amount <= this.balance) {
-                    this.balance = this.balance - amount;
-                    console.log(`Withdrew ${amount}`);
-                } else {
-                    console.log("Insufficient funds");
-                }
-                return this.balance;
-            }
-    explanations:
-      - body: |
-          ### 3. The `withdraw` Method and Overdraft Protection
-          * **Compound Guard Condition**: `if (0 < amount && amount <= this.balance)` checks two conditions with the logical AND (`&&`):
-            1. `0 < amount`: The withdrawal amount must be greater than zero.
-            2. `amount <= this.balance`: The withdrawal amount must not exceed the available funds (allowing full withdrawals down to 0 balance).
-          * **Successful Debit**: When valid, `this.balance = this.balance - amount;` deducts funds and logs the transaction.
-          * **Fallback Branch**: The `else` block handles overdraft attempts or invalid inputs by logging `"Insufficient funds"` without modifying `this.balance`.
-          * **Return Value**: Returns the current balance in both scenarios.
-  - type: explanation
-    location:
-      snippet: |-
-        function main() {
-            const account = new BankAccount("Bob", 200);
-            account.deposit(100);
-            account.withdraw(50);
-            console.log(`Balance: ${account.balance}`);
-        }
-    explanations:
-      - body: |
-          ### 4. Execution Flow in `main`
-          * `const account = new BankAccount("Bob", 200);`: Instantiates a `BankAccount` object for `"Bob"` with an initial balance of `200`.
-          * `account.deposit(100);`: Invokes the `deposit` method, increasing balance to `300` and logging `"Deposited 100"`.
-          * `account.withdraw(50);`: Invokes the `withdraw` method, decreasing balance to `250` and logging `"Withdrew 50"`.
-          * `console.log(\`Balance: \${account.balance}\`);`: Directly accesses the instance property `account.balance` to display the final balance (`"Balance: 250"`).
+- type: explanation
+  location:
+    snippet: |-
+      class BankAccount {
+          constructor(owner, balance) {
+              this.owner = owner;
+              this.balance = balance;
+          }
+  explanations:
+  - body: |
+      ### 1. Class Declaration and Constructor Initialization
+      * `class BankAccount`: In ES6+, the `class` keyword provides a clear, declarative syntax for creating object blueprints.
+      * `constructor(owner, balance)`: The special constructor method is automatically executed when a new instance is created via `new BankAccount(...)`.
+      * Inside the constructor, `this.owner = owner;` and `this.balance = balance;` attach the argument values to properties on the newly created object instance via the `this` keyword.
+- type: explanation
+  location:
+    snippet: |2-
+
+          deposit(amount) {
+              if (amount > 0) {
+                  this.balance = this.balance + amount;
+                  console.log(`Deposited ${amount}`);
+              }
+              return this.balance;
+          }
+  explanations:
+  - body: |
+      ### 2. The `deposit` Method
+      * **Input Validation**: `if (amount > 0)` acts as a guard condition ensuring only positive values can be deposited, preventing negative or zero amounts from altering the balance.
+      * **State Mutation**: `this.balance = this.balance + amount;` credits the account by adding `amount` to the current instance balance.
+      * **Template Literal Logging**: `console.log(\`Deposited \${amount}\`);` uses ES6 backtick template literals for string interpolation.
+      * **Return Value**: `return this.balance;` returns the updated balance to the caller.
+- type: explanation
+  location:
+    snippet: |2-
+
+          withdraw(amount) {
+              if (0 < amount && amount <= this.balance) {
+                  this.balance = this.balance - amount;
+                  console.log(`Withdrew ${amount}`);
+              } else {
+                  console.log("Insufficient funds");
+              }
+              return this.balance;
+          }
+  explanations:
+  - body: |
+      ### 3. The `withdraw` Method and Overdraft Protection
+      * **Compound Guard Condition**: `if (0 < amount && amount <= this.balance)` checks two conditions with the logical AND (`&&`):
+        1. `0 < amount`: The withdrawal amount must be greater than zero.
+        2. `amount <= this.balance`: The withdrawal amount must not exceed the available funds (allowing full withdrawals down to 0 balance).
+      * **Successful Debit**: When valid, `this.balance = this.balance - amount;` deducts funds and logs the transaction.
+      * **Fallback Branch**: The `else` block handles overdraft attempts or invalid inputs by logging `"Insufficient funds"` without modifying `this.balance`.
+      * **Return Value**: Returns the current balance in both scenarios.
+- type: explanation
+  location:
+    snippet: |-
+      function main() {
+          const account = new BankAccount("Bob", 200);
+          account.deposit(100);
+          account.withdraw(50);
+          console.log(`Balance: ${account.balance}`);
+      }
+  explanations:
+  - body: |
+      ### 4. Execution Flow in `main`
+      * `const account = new BankAccount("Bob", 200);`: Instantiates a `BankAccount` object for `"Bob"` with an initial balance of `200`.
+      * `account.deposit(100);`: Invokes the `deposit` method, increasing balance to `300` and logging `"Deposited 100"`.
+      * `account.withdraw(50);`: Invokes the `withdraw` method, decreasing balance to `250` and logging `"Withdrew 50"`.
+      * `console.log(\`Balance: \${account.balance}\`);`: Directly accesses the instance property `account.balance` to display the final balance (`"Balance: 250"`).
