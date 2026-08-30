@@ -93,28 +93,6 @@ elements:
         explanations:
           - body: |
               Correct! Validates that `amount > 0` before updating `this.balance`, logs the confirmation message, and returns the updated balance.
-      - snippet: |-
-          deposit(amount) {
-              this.balance = this.balance + amount;
-              console.log(`Deposited ${amount}`);
-              return this.balance;
-          }
-        role: distractor
-        explanations:
-          - body: |
-              Incorrect. Omits the `if (amount > 0)` input validation guard, which would allow negative or zero deposit amounts to erroneously corrupt account balances.
-      - snippet: |-
-          deposit(amount) {
-              if (amount > 0) {
-                  this.balance = this.balance - amount;
-                  console.log(`Deposited ${amount}`);
-              }
-              return this.balance;
-          }
-        role: distractor
-        explanations:
-          - body: |
-              Incorrect. Uses subtraction (`-`) instead of addition (`+`), deducting money from the account balance during a deposit transaction.
   - type: block
     group: bank-members
     location:
@@ -153,17 +131,3 @@ elements:
         explanations:
           - body: |
               Incorrect. Unconditionally deducts `amount` without verifying if `amount <= this.balance`, allowing the account balance to plunge into negative numbers.
-      - snippet: |-
-          withdraw(amount) {
-              if (0 < amount && amount > this.balance) {
-                  this.balance = this.balance - amount;
-                  console.log(`Withdrew ${amount}`);
-              } else {
-                  console.log("Insufficient funds");
-              }
-              return this.balance;
-          }
-        role: distractor
-        explanations:
-          - body: |
-              Incorrect. The comparison `amount > this.balance` inverts the logic: it only allows withdrawals when the amount exceeds the balance, guaranteeing an overdraft on every successful withdrawal!
