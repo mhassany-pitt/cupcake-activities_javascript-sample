@@ -73,7 +73,6 @@ elements:
     group: bank-members
     location:
       snippet: |2-
-
             deposit(amount) {
                 if (amount > 0) {
                     this.balance = this.balance + amount;
@@ -83,7 +82,6 @@ elements:
             }
     choices:
       - snippet: |2-
-
               deposit(amount) {
                   if (amount > 0) {
                       this.balance = this.balance + amount;
@@ -121,7 +119,6 @@ elements:
     group: bank-members
     location:
       snippet: |2-
-
             withdraw(amount) {
                 if (0 < amount && amount <= this.balance) {
                     this.balance = this.balance - amount;
@@ -133,7 +130,6 @@ elements:
             }
     choices:
       - snippet: |2-
-
               withdraw(amount) {
                   if (0 < amount && amount <= this.balance) {
                       this.balance = this.balance - amount;
