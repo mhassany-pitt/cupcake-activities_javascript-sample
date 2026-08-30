@@ -3,8 +3,8 @@ source: main.js
 license: MIT
 locale: en-US
 id: free_coding_bank_account
-title: Bank Account Management
-description: Implement and test bank account methods in JavaScript.
+title: Bank Account Management in JavaScript
+description: Instantiate a BankAccount object, execute deposit and withdrawal transactions, and inspect the resulting balance.
 authors:
   - first: Jone
     last: Doe
@@ -13,15 +13,24 @@ authors:
 pedagogy:
   activity: free-coding
   difficulty: novice
-  prereq_topics: [classes]
-  topics: [classes, methods, state]
+  prereq_topics:
+    - basic-syntax
+    - classes
+  topics:
+    - classes
+    - constructors
+    - methods
+    - state
 runtime:
   language: javascript
 statement: |
-  Implement a `transfer` sequence or method in `main` to move money from one `BankAccount` to another.
-  Ensure that money is withdrawn from the current account only if funds are sufficient, and deposited into the target account.
+  In the `main` function, write the JavaScript code to interact with the `BankAccount` class:
+  1. Instantiate a new `BankAccount` named `account` for owner `"Bob"` with an initial balance of `200`.
+  2. Call `deposit` with an amount of `100`.
+  3. Call `withdraw` with an amount of `50`.
+  4. Print the final balance to the console in the format: `Balance: <balance>`.
 executions:
-  - title: Transfer Alice to Bob
+  - title: Standard Transaction Sequence
     stdin: []
     stdout: |-
       Deposited 100
@@ -63,15 +72,20 @@ elements:
   - type: editable
     location:
       snippet: |-
-        const account = new BankAccount("Bob", 200);
+            const account = new BankAccount("Bob", 200);
             account.deposit(100);
             account.withdraw(50);
             console.log(`Balance: ${account.balance}`);
     placeholder: |-
-      // Implement transfer sequence here
-          // Then test it with acc1 and acc2
+      // 1. Create a BankAccount for "Bob" with 200 initial balance
+
+          // 2. Deposit 100
+
+          // 3. Withdraw 50
+
+          // 4. Print `Balance: ${account.balance}`
 testcases:
-  - title: Simple Transfer
+  - title: Standard Account Workflow
     visible: true
     stdin: []
     stdout: |-
@@ -82,3 +96,4 @@ testcases:
       Deposited 100
       Withdrew 50
       Balance: 250
+    status: pass

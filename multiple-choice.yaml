@@ -2,8 +2,8 @@ $schema: https://learning-contents.org/schemas/multiple-choice-question/0.1.0
 license: MIT
 locale: en-US
 id: mcq_bank_account_deposit
-title: JavaScript Class Deposit Method
-description: Choose the correct implementation of the deposit method in JavaScript.
+title: JavaScript ES6 Class Deposit Method Implementation
+description: Choose the correct implementation of a deposit method in an ES6 BankAccount class.
 authors:
   - first: Jone
     last: Doe
@@ -13,13 +13,16 @@ pedagogy:
   activity: multiple-choice-question
   difficulty: intermediate
   prereq_topics:
+    - basic-syntax
     - classes
   topics:
     - classes
     - methods
-include_choices: 3
+    - variable-scope
+    - state
+include_choices: 4
 question: |
-  Given the following ES6 class definition for `BankAccount`:
+  Given the following JavaScript ES6 class definition:
   
   ```javascript
   class BankAccount {
@@ -30,7 +33,7 @@ question: |
   }
   ```
   
-  Which of the following represents the correct implementation for a `deposit` method in JavaScript that adds a positive `amount` to the account balance and returns the new balance?
+  Which of the following represents the correct implementation for a `deposit` method in `BankAccount` that validates positive deposit amounts, modifies the instance balance, and returns the new balance?
 choices:
   - body: |
       ```javascript
@@ -47,12 +50,44 @@ choices:
     order: 1
     explanations:
       - body: |
-          This is the correct implementation. It verifies that the deposit `amount` is positive (`amount > 0`), updates the instance property `this.balance` using `+=`, and returns the updated balance. It also throws an `Error` for invalid deposit amounts.
+          Correct! This implementation:
+          1. Verifies that the deposit `amount` is strictly positive (`amount > 0`).
+          2. Mutates instance state using `this.balance += amount`.
+          3. Returns the updated balance.
+          4. Throws a descriptive `Error` if the deposit amount is not positive.
   - body: |
       ```javascript
       deposit(amount) {
           if (amount > 0) {
-              let balance = balance + amount;
+              let balance = this.balance + amount;
+              return balance;
+          }
+          return this.balance;
+      }
+      ```
+    role: distractor
+    explanations:
+      - body: |
+          Incorrect. Declaring `let balance = ...` creates a temporary block-scoped local variable instead of updating the instance property `this.balance`, leaving the account balance unmodified.
+  - body: |
+      ```javascript
+      deposit(amount) {
+          if (amount > 0) {
+              this.balance =+ amount;
+              return this.balance;
+          }
+          return this.balance;
+      }
+      ```
+    role: distractor
+    explanations:
+      - body: |
+          Incorrect. The operator `=+` is a unary positive assignment (`this.balance = +amount`), which replaces and overwrites the balance with `amount` rather than accumulating funds with `+=`.
+  - body: |
+      ```javascript
+      deposit(amount) {
+          if (amount > 0) {
+              balance += amount;
               return balance;
           }
           return balance;
@@ -61,19 +96,4 @@ choices:
     role: distractor
     explanations:
       - body: |
-          Incorrect. Declaring `let balance = ...` inside the method creates a shadowed local variable instead of updating the instance property `this.balance`.
-  - body: |
-      ```javascript
-      deposit(amount) {
-          this.balance =+ amount;
-          return this.balance;
-      }
-      ```
-    role: distractor
-    explanations:
-      - body: |
-          Incorrect. The operator `=+` assigns positive `amount` (`this.balance = +amount`), which overwrites the balance rather than adding to it. The correct operator is `+=`.
-  - body: None
-    role: distractor
-    include: always
-    order: 2
+          Incorrect. In JavaScript class methods, instance properties must be referenced using `this.balance`. Omitting `this.` causes a runtime `ReferenceError: balance is not defined`.
