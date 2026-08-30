@@ -1,28 +1,26 @@
----
-"$schema": https://learning-contents.org/schemas/free-coding/0.1.0
+$schema: https://learning-contents.org/schemas/free-coding/0.1.0
 source: main.js
 license: MIT
 locale: en-US
 id: free_coding_bank_account
 title: Bank Account Management in JavaScript
-description: Instantiate a BankAccount object, execute deposit and withdrawal transactions,
-  and inspect the resulting balance.
+description: Instantiate a BankAccount object, execute deposit and withdrawal transactions, and inspect the resulting balance.
 authors:
-- first: Jone
-  last: Doe
-  email: jone.doe@example.com
-  affiliation: University of John Doe
+  - first: Jone
+    last: Doe
+    email: jone.doe@example.com
+    affiliation: University of John Doe
 pedagogy:
   activity: free-coding
   difficulty: novice
   prereq_topics:
-  - basic-syntax
-  - classes
+    - basic-syntax
+    - classes
   topics:
-  - classes
-  - constructors
-  - methods
-  - state
+    - classes
+    - constructors
+    - methods
+    - state
 runtime:
   language: javascript
 statement: |
@@ -32,70 +30,70 @@ statement: |
   3. Call `withdraw` with an amount of `50`.
   4. Print the final balance to the console in the format: `Balance: <balance>`.
 executions:
-- title: Standard Transaction Sequence
-  stdin: []
-  stdout: |-
-    Deposited 100
-    Withdrew 50
-    Balance: 250
-  console: |-
-    Deposited 100
-    Withdrew 50
-    Balance: 250
-  status: pass
+  - title: Standard Transaction Sequence
+    stdin: []
+    stdout: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    console: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    status: pass
 elements:
-- type: locked
-  location:
-    snippet: |-
-      class BankAccount {
-          constructor(owner, balance) {
-              this.owner = owner;
-              this.balance = balance;
-          }
+  - type: locked
+    location:
+      snippet: |-
+        class BankAccount {
+            constructor(owner, balance) {
+                this.owner = owner;
+                this.balance = balance;
+            }
 
-          deposit(amount) {
-              if (amount > 0) {
-                  this.balance = this.balance + amount;
-                  console.log(`Deposited ${amount}`);
-              }
-              return this.balance;
-          }
+            deposit(amount) {
+                if (amount > 0) {
+                    this.balance = this.balance + amount;
+                    console.log(`Deposited ${amount}`);
+                }
+                return this.balance;
+            }
 
-          withdraw(amount) {
-              if (0 < amount && amount <= this.balance) {
-                  this.balance = this.balance - amount;
-                  console.log(`Withdrew ${amount}`);
-              } else {
-                  console.log("Insufficient funds");
-              }
-              return this.balance;
-          }
-      }
-- type: editable
-  location:
-    snippet: |2-
-          const account = new BankAccount("Bob", 200);
-          account.deposit(100);
-          account.withdraw(50);
-          console.log(`Balance: ${account.balance}`);
-  placeholder: |-
-    // 1. Create a BankAccount for "Bob" with 200 initial balance
+            withdraw(amount) {
+                if (0 < amount && amount <= this.balance) {
+                    this.balance = this.balance - amount;
+                    console.log(`Withdrew ${amount}`);
+                } else {
+                    console.log("Insufficient funds");
+                }
+                return this.balance;
+            }
+        }
+  - type: editable
+    location:
+      snippet: |2-
+            const account = new BankAccount("Bob", 200);
+            account.deposit(100);
+            account.withdraw(50);
+            console.log(`Balance: ${account.balance}`);
+    placeholder: |-
+      // 1. Create a BankAccount for "Bob" with 200 initial balance
 
-        // 2. Deposit 100
+          // 2. Deposit 100
 
-        // 3. Withdraw 50
+          // 3. Withdraw 50
 
-        // 4. Print `Balance: ${account.balance}`
+          // 4. Print `Balance: ${account.balance}`
 testcases:
-- title: Standard Account Workflow
-  visible: true
-  stdin: []
-  stdout: |-
-    Deposited 100
-    Withdrew 50
-    Balance: 250
-  console: |-
-    Deposited 100
-    Withdrew 50
-    Balance: 250
-  status: pass
+  - title: Standard Account Workflow
+    visible: true
+    stdin: []
+    stdout: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    console: |-
+      Deposited 100
+      Withdrew 50
+      Balance: 250
+    status: pass
